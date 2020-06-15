@@ -10,14 +10,19 @@ import SwiftUI
 
 struct ContentView: View {
     @State var roubles: String = ""
+    @State var dollars: String = ""
     
     var body: some View {
         VStack(alignment: .leading) {
+
             HStack(){
             Text("Рубли:")
-            TextField("Вводить сюда", text: $roubles)
+            TextField("\(String((Float(dollars) ?? 0) / 74))", text: $roubles)
             }
-            Text("Доллары: \(String((Int(roubles) ?? 0) * 74))")
+            HStack(){
+            Text("Доллары:")
+            TextField("\(String((Float(roubles) ?? 0) * 74))", text: $dollars)
+            }
         }.padding()
        
     }

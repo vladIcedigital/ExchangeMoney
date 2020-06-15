@@ -11,9 +11,18 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    let defaults = UserDefaults.standard
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        let url = URL(string: "https://api.exchangeratesapi.io/latest")!
+                let session = URLSession.shared
+
+            let task = session.dataTask(with: url) { data, response, error in
+                let json = try? JSONSerialization.jsonObject(with: data!, options: [])
+                self.defaults.set(json, forKey: "data")
+        }
+            task.resume()
         // Override point for customization after application launch.
         return true
     }

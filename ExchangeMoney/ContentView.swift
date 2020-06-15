@@ -9,8 +9,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var roubles: String = ""
+    
     var body: some View {
-        Text("Hello, World!")
+        VStack(alignment: .leading) {
+            HStack(){
+            Text("Рубли:")
+            TextField("Вводить сюда", text: $roubles)
+            }
+            Text("Доллары: \(String((Int(roubles) ?? 0) * 74))")
+        }.padding()
+       
     }
 }
 
